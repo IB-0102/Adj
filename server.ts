@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 
-import { requireAuth, requireAdmin } from "./src/middleware/auth.js";
+import { requireAuth, requireAdmin } from "./src/middleware/auth";
 import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 
