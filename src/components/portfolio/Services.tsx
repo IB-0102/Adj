@@ -22,7 +22,8 @@ export default function Services() {
     }
   });
 
-  const displayServices = services.length > 0 ? services : fallbackServices;
+  const servicesList = Array.isArray(services) ? services : [];
+  const displayServices = servicesList.length > 0 ? servicesList : fallbackServices;
 
   return (
     <section id="services" className="py-24 bg-ivory-dark">

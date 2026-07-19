@@ -15,10 +15,12 @@ export default function Testimonials() {
     }
   });
 
-  if (testimonials.length === 0) return null;
+  const testimonialsList = Array.isArray(testimonials) ? testimonials : [];
 
-  const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  if (testimonialsList.length === 0) return null;
+
+  const next = () => setCurrentIndex((prev) => (prev + 1) % testimonialsList.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonialsList.length) % testimonialsList.length);
 
   return (
     <section id="testimonials" className="py-24 bg-ivory-dark overflow-hidden">
@@ -58,30 +60,30 @@ export default function Testimonials() {
                 <div className="relative z-10 flex flex-col items-center text-center">
                   <div className="flex items-center gap-1 mb-6 text-yellow-400">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className={`w-5 h-5 ${i < testimonials[currentIndex].rating ? 'fill-current' : 'text-lavender'}`} />
+                      <Star key={i} className={`w-5 h-5 ${i < testimonialsList[currentIndex].rating ? 'fill-current' : 'text-lavender'}`} />
                     ))}
                   </div>
                   
                   <p className="text-xl md:text-2xl text-olive font-medium leading-relaxed mb-8">
-                    "{testimonials[currentIndex].review}"
+                    "{testimonialsList[currentIndex].review}"
                   </p>
                   
                   <div className="flex items-center gap-4">
-                    {testimonials[currentIndex].clientPhoto ? (
+                    {testimonialsList[currentIndex].clientPhoto ? (
                       <img 
-                        src={testimonials[currentIndex].clientPhoto} 
-                        alt={testimonials[currentIndex].clientName}
+                        src={testimonialsList[currentIndex].clientPhoto} 
+                        alt={testimonialsList[currentIndex].clientName}
                         className="w-14 h-14 rounded-full object-cover border-2 border-lavender"
                       />
                     ) : (
                       <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-olive to-deeppurple flex items-center justify-center text-white font-bold text-xl">
-                        {testimonials[currentIndex].clientName.charAt(0)}
+                        {testimonialsList[currentIndex].clientName.charAt(0)}
                       </div>
                     )}
                     <div className="text-left">
-                      <h4 className="font-bold text-deeppurple">{testimonials[currentIndex].clientName}</h4>
-                      {testimonials[currentIndex].company && (
-                        <p className="text-sm text-olive">{testimonials[currentIndex].company}</p>
+                      <h4 className="font-bold text-deeppurple">{testimonialsList[currentIndex].clientName}</h4>
+                      {testimonialsList[currentIndex].company && (
+                        <p className="text-sm text-olive">{testimonialsList[currentIndex].company}</p>
                       )}
                     </div>
                   </div>

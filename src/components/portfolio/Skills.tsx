@@ -24,7 +24,8 @@ export default function Skills() {
     }
   });
 
-  const displaySkills = skills.length > 0 ? skills : fallbackSkillsData;
+  const skillsList = Array.isArray(skills) ? skills : [];
+  const displaySkills = skillsList.length > 0 ? skillsList : fallbackSkillsData;
 
   return (
     <section id="skills" className="py-24 bg-ivory">

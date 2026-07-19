@@ -16,11 +16,13 @@ export default function Projects() {
     }
   });
 
-  const categories = ['All', ...Array.from(new Set(projects.map((p: any) => p.category)))];
+  const projectsList = Array.isArray(projects) ? projects : [];
+
+  const categories = ['All', ...Array.from(new Set(projectsList.map((p: any) => p.category)))];
 
   const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter((p: any) => p.category === activeCategory);
+    ? projectsList 
+    : projectsList.filter((p: any) => p.category === activeCategory);
 
   return (
     <section id="portfolio" className="py-24 bg-ivory">
@@ -52,7 +54,7 @@ export default function Projects() {
         {/* Grid */}
         {isLoading ? (
           <div className="text-center py-20 text-olive">Loading projects...</div>
-        ) : projects.length === 0 ? (
+        ) : projectsList.length === 0 ? (
           <div className="text-center py-20 text-olive">
             No projects available yet. Check back soon!
           </div>
