@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #ec4899;
+  --color-primary-dark: #db2777;
+  --color-secondary: #a855f7;
+  --color-secondary-dark: #9333ea;
+  --color-ivory: #FDFBF7;
+  --color-ivory-dark: #F5F2EB;
+  --color-lavender: #E6E6FA;
+  --color-lavender-light: #F2EFFF;
+  --color-olive: #6C7A63;
+  --color-olive-dark: #5A6851;
+  --color-deeppurple: #4A3B52;
+  --color-deeppurple-dark: #382940;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-ivory text-deeppurple antialiased;
+  }
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-olive to-deeppurple;
+}
+.bg-gradient-primary {
+  @apply bg-gradient-to-r from-olive to-deeppurple text-white hover:from-olive-dark hover:to-deeppurple transition-all duration-300;
+}
+

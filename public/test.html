@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <iframe name="hidden_iframe" style="display:none;" onload="if(submitted) { console.log('success'); }"></iframe>
+  <form action="https://formsubmit.co/adjim1990@gmail.com" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="name" value="Test Name" />
+    <input type="email" name="email" value="test@test.com" />
+    <input type="text" name="message" value="Testing HTML form submission" />
+    <button type="submit">Submit</button>
+  </form>
+  <script>var submitted = false;</script>
+</body>
+</html>
