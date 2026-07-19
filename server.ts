@@ -578,7 +578,7 @@ const PORT = 3000;
 async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
-    const { createServer: createViteServer } = await import("vite");
+    const { createServer: createViteServer } = await import("vi" + "te");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
