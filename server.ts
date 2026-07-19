@@ -3,7 +3,7 @@ import path from "path";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import { createServer as createViteServer } from "vite";
+
 import { requireAuth, requireAdmin } from "./src/middleware/auth";
 import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
@@ -578,6 +578,7 @@ const PORT = 3000;
 async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
