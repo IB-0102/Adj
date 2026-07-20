@@ -24,100 +24,115 @@ function getSupabase() {
 // Local DB fallback
 const dbPath = process.env.VERCEL ? path.join("/tmp", "local-db.json") : path.join(process.cwd(), "local-db.json");
 function readLocalDb() {
-  if (!fs.existsSync(dbPath)) {
-    fs.writeFileSync(dbPath, JSON.stringify({
-      projects: [
-        {
-          id: 1000000000001,
-          title: "Neon Dreams Branding",
-          slug: "neon-dreams-branding",
-          description: "A vibrant, multicolor brand identity designed for a modern creative agency.",
-          content: "This project involved creating a full visual identity system, including a dynamic logo, color palette, typography, and marketing materials. The goal was to stand out with bold, fluorescent colors.",
-          featuredImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-          category: "Brand Identity",
-          clientName: "Neon Dreams Agency",
-          projectUrl: "",
-          completionDate: "2023-10-15"
-        },
-        {
-          id: 1000000000002,
-          title: "Fintech App UI/UX",
-          slug: "fintech-app-ui",
-          description: "Sleek and colorful mobile application interface for a modern financial platform.",
-          content: "Designed the user experience and user interface for a new fintech mobile application. Focused on usability, accessibility, and an engaging visual language featuring custom colorful illustrations.",
-          featuredImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
-          category: "UI/UX Design",
-          clientName: "Global Finance Tech",
-          projectUrl: "",
-          completionDate: "2023-12-01"
-        },
-        {
-          id: 1000000000003,
-          title: "Summer Festival Poster",
-          slug: "summer-festival-poster",
-          description: "High-energy, multicolor poster design for an electronic music festival.",
-          content: "Created promotional materials for an outdoor music festival. The design uses vibrant gradients, bold typography, and abstract shapes to capture the energy of the event.",
-          featuredImage: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
-          category: "Print Design",
-          clientName: "Sunset Events",
-          projectUrl: "",
-          completionDate: "2024-02-20"
-        },
-        {
-          id: 1000000000004,
-          title: "Geometric Logo Collection",
-          slug: "geometric-logo-collection",
-          description: "A series of colorful, geometric logo marks designed for various tech startups.",
-          content: "A showcase of logomarks created over the past year. Each design focuses on simplicity, scalability, and distinct multicolor palettes to create memorable brand signatures.",
-          featuredImage: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop",
-          category: "Logo Design",
-          clientName: "Various Startups",
-          projectUrl: "",
-          completionDate: "2024-03-10"
-        },
-        {
-          id: 1000000000005,
-          title: "Abstract 3D Graphics",
-          slug: "abstract-3d-graphics",
-          description: "Set of 3D rendered abstract compositions used for web backgrounds and marketing.",
-          content: "Exploration of 3D forms, lighting, and vibrant materials. These graphics were licensed for use in a global software company's marketing campaign.",
-          featuredImage: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=800&auto=format&fit=crop",
-          category: "3D Illustration",
-          clientName: "TechCorp Inc.",
-          projectUrl: "",
-          completionDate: "2024-05-05"
-        },
-        {
-          id: 1000000000006,
-          title: "Social Media Campaign",
-          slug: "social-media-campaign",
-          description: "Vibrant and engaging social media post designs for a lifestyle brand.",
-          content: "Developed a comprehensive social media template system. The designs utilize striking color combinations and modern typography to increase engagement and brand awareness across platforms.",
-          featuredImage: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=800&auto=format&fit=crop",
-          category: "Social Media",
-          clientName: "Lifestyle Co.",
-          projectUrl: "",
-          completionDate: "2024-06-15"
-        }
-      ],
-      services: [
-        { id: 1, title: 'Brand Identity', description: 'Creating memorable visual identities that perfectly represent your business values and appeal to your target audience.', icon: 'Layout', order_num: 1 },
-        { id: 2, title: 'UI/UX Design', description: 'Designing intuitive and engaging digital experiences for web and mobile applications focused on user conversion.', icon: 'Smartphone', order_num: 2 },
-      ],
-      skills: [
-        { id: 1, name: 'Adobe Photoshop', progress: 95, order_num: 1 },
-        { id: 2, name: 'Adobe Illustrator', progress: 90, order_num: 2 },
-      ],
+  try {
+    if (!fs.existsSync(dbPath)) {
+      const initialData = {
+        projects: [
+          {
+            id: 1000000000001,
+            title: "Neon Dreams Branding",
+            slug: "neon-dreams-branding",
+            description: "A vibrant, multicolor brand identity designed for a modern creative agency.",
+            content: "This project involved creating a full visual identity system, including a dynamic logo, color palette, typography, and marketing materials. The goal was to stand out with bold, fluorescent colors.",
+            featuredImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
+            category: "Brand Identity",
+            clientName: "Neon Dreams Agency",
+            projectUrl: "",
+            completionDate: "2023-10-15"
+          },
+          {
+            id: 1000000000002,
+            title: "Fintech App UI/UX",
+            slug: "fintech-app-ui",
+            description: "Sleek and colorful mobile application interface for a modern financial platform.",
+            content: "Designed the user experience and user interface for a new fintech mobile application. Focused on usability, accessibility, and an engaging visual language featuring custom colorful illustrations.",
+            featuredImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
+            category: "UI/UX Design",
+            clientName: "Global Finance Tech",
+            projectUrl: "",
+            completionDate: "2023-12-01"
+          },
+          {
+            id: 1000000000003,
+            title: "Summer Festival Poster",
+            slug: "summer-festival-poster",
+            description: "High-energy, multicolor poster design for an electronic music festival.",
+            content: "Created promotional materials for an outdoor music festival. The design uses vibrant gradients, bold typography, and abstract shapes to capture the energy of the event.",
+            featuredImage: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
+            category: "Print Design",
+            clientName: "Sunset Events",
+            projectUrl: "",
+            completionDate: "2024-02-20"
+          },
+          {
+            id: 1000000000004,
+            title: "Geometric Logo Collection",
+            slug: "geometric-logo-collection",
+            description: "A series of colorful, geometric logo marks designed for various tech startups.",
+            content: "A showcase of logomarks created over the past year. Each design focuses on simplicity, scalability, and distinct multicolor palettes to create memorable brand signatures.",
+            featuredImage: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop",
+            category: "Logo Design",
+            clientName: "Various Startups",
+            projectUrl: "",
+            completionDate: "2024-03-10"
+          },
+          {
+            id: 1000000000005,
+            title: "Abstract 3D Graphics",
+            slug: "abstract-3d-graphics",
+            description: "Set of 3D rendered abstract compositions used for web backgrounds and marketing.",
+            content: "Exploration of 3D forms, lighting, and vibrant materials. These graphics were licensed for use in a global software company's marketing campaign.",
+            featuredImage: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=800&auto=format&fit=crop",
+            category: "3D Illustration",
+            clientName: "TechCorp Inc.",
+            projectUrl: "",
+            completionDate: "2024-05-05"
+          },
+          {
+            id: 1000000000006,
+            title: "Social Media Campaign",
+            slug: "social-media-campaign",
+            description: "Vibrant and engaging social media post designs for a lifestyle brand.",
+            content: "Developed a comprehensive social media template system. The designs utilize striking color combinations and modern typography to increase engagement and brand awareness across platforms.",
+            featuredImage: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=800&auto=format&fit=crop",
+            category: "Social Media",
+            clientName: "Lifestyle Co.",
+            projectUrl: "",
+            completionDate: "2024-06-15"
+          }
+        ],
+        services: [
+          { id: 1, title: 'Brand Identity', description: 'Creating memorable visual identities that perfectly represent your business values and appeal to your target audience.', icon: 'Layout', order_num: 1 },
+          { id: 2, title: 'UI/UX Design', description: 'Designing intuitive and engaging digital experiences for web and mobile applications focused on user conversion.', icon: 'Smartphone', order_num: 2 },
+        ],
+        skills: [
+          { id: 1, name: 'Adobe Photoshop', progress: 95, order_num: 1 },
+          { id: 2, name: 'Adobe Illustrator', progress: 90, order_num: 2 },
+        ],
+        messages: [],
+        testimonials: [
+          { id: 1, clientName: "Adeola F.", company: "Tech Solutions Lagos", rating: 5, review: "Ibrahim's designs completely transformed our brand identity. Professional, creative, and highly recommended!", location: "Lagos, Nigeria" },
+          { id: 2, clientName: "Chukwudi M.", company: "PH Ventures", rating: 5, review: "Working with Ibrahim was a pleasure. He understood our vision perfectly and delivered beyond expectations.", location: "Port Harcourt, Nigeria" },
+          { id: 3, clientName: "Oluwaseun A.", company: "Ibadan Creatives", rating: 5, review: "Exceptional graphic design skills! Ibrahim is very attentive to details and delivers high-quality work promptly.", location: "Ibadan, Nigeria" }
+        ],
+        about: { title: "About Me", content: "I'm a passionate Graphic Designer with a keen eye for aesthetics and a drive to create impactful visual stories. With years of experience in the industry, I specialize in branding, UI/UX design, and digital illustrations. My goal is to help businesses communicate their message effectively through compelling designs." }
+      };
+      fs.writeFileSync(dbPath, JSON.stringify(initialData, null, 2));
+      return initialData;
+    }
+    const fileContent = fs.readFileSync(dbPath, 'utf8');
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error("Error reading local DB, falling back to defaults:", error);
+    return {
+      projects: [],
+      services: [],
+      skills: [],
       messages: [],
-      testimonials: [
-        { id: 1, clientName: "Adeola F.", company: "Tech Solutions Lagos", rating: 5, review: "Ibrahim's designs completely transformed our brand identity. Professional, creative, and highly recommended!", location: "Lagos, Nigeria" },
-        { id: 2, clientName: "Chukwudi M.", company: "PH Ventures", rating: 5, review: "Working with Ibrahim was a pleasure. He understood our vision perfectly and delivered beyond expectations.", location: "Port Harcourt, Nigeria" },
-        { id: 3, clientName: "Oluwaseun A.", company: "Ibadan Creatives", rating: 5, review: "Exceptional graphic design skills! Ibrahim is very attentive to details and delivers high-quality work promptly.", location: "Ibadan, Nigeria" }
-      ],
-      about: { title: "About Me", content: "I'm a passionate Graphic Designer with a keen eye for aesthetics and a drive to create impactful visual stories. With years of experience in the industry, I specialize in branding, UI/UX design, and digital illustrations. My goal is to help businesses communicate their message effectively through compelling designs." }
-    }));
+      testimonials: [],
+      about: {}
+    };
   }
-  return JSON.parse(fs.readFileSync(dbPath, 'utf8'));
 }
 function writeLocalDb(data: any) {
   fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
@@ -575,6 +590,18 @@ const PORT = 3000;
     }
   });
 
+  // Catch-all for API routes to prevent HTML injection into JSON parsers
+  app.use("/api/*", (req, res) => {
+    console.warn(`API Route not found: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ error: "API Route Not Found", url: req.originalUrl });
+  });
+
+  // Global error handler
+  app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    console.error("Global Error Handler:", err);
+    res.status(500).json({ error: "Internal Server Error", message: err.message });
+  });
+
 async function startServer() {
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
@@ -597,7 +624,7 @@ async function startServer() {
   });
 }
 
-if (!process.env.VERCEL) {
+if (!process.env.VERCEL && !process.env.NETLIFY) {
   startServer();
 }
 
